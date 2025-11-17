@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->string('origin_link');
             $table->string('tiny_link');
             $table->dateTime('expiration_date')->nullable();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->boolean('is_active')->default(true);
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

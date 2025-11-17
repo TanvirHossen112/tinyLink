@@ -47,12 +47,12 @@ trait ApiAble
     /**
      * Paginated Response
      *
-     * @param $data
+     * @param mixed $data
      * @param string $message
      * @param int $code
      * @return JsonResponse
      */
-    protected function paginatedResponse($data, string $message, int $code): JsonResponse
+    protected function paginatedResponse(mixed $data, string $message, int $code = 200): JsonResponse
     {
         $payload = $data->response()->getData(true);
 

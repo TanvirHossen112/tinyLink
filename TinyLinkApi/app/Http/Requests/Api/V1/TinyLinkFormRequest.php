@@ -2,15 +2,15 @@
 
 namespace App\Http\Requests\Api\V1;
 
+use App\Helpers\GenerateTinyLink;
 use Illuminate\Foundation\Http\FormRequest;
-use phpDocumentor\Reflection\Types\Boolean;
 
-class TinyLinkFormRequests extends FormRequest
+class TinyLinkFormRequest extends FormRequest
 {
     /**
      * @return bool
      */
-    public function authorize(): Boolean
+    public function authorize(): bool
     {
         return true;
     }
@@ -28,10 +28,18 @@ class TinyLinkFormRequests extends FormRequest
     }
 
 
-    public function fields()
+    /**
+     * Get the fields for creating a tiny link record
+     *
+     * @return array
+     */
+    public function fields(): array
     {
         return [
             'origin_link' => $this->input('link'),
+            'tiny_link' => GenerateTinyLink::generate($this->input('link')),
+            'expiration_date' => $this->input('expiration_date'),
+            'is_active' => true
         ];
     }
 }
